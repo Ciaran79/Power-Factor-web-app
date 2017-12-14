@@ -1,0 +1,55 @@
+header {
+    background: #E4C49A;
+    padding: 10px;
+}
+
+main {
+    max-width: 940px;
+    margin-top: 20px;    
+}
+
+#frontTitle {
+    text-decoration: underline;
+    text-align: center;
+    
+}
+
+
+.control-area {
+   
+    margin: auto;
+    border: 2px solid black;
+}
+
+#result {
+    border: 2px solid black;
+}
+
+
+.submit-section {
+    border: 5px black solid ;
+    margin-bottom: 25px; 
+}
+
+.recover-section{
+    border: 5px black solid;
+    margin: 25px 0 0 0;
+}
+
+.darkCol1 {
+    background-color: #1A6620;
+}
+
+.darkCol2{
+    background: green;
+}
+
+.darkCol3 {
+    background: red;
+}
+/*
+.buttons {
+    width:200px;
+    height: 50px;
+}
+*/

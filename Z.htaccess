@@ -1,0 +1,6 @@
+# Redirect the all users to /maintenance/index.html, except the ones from the specified IP address.
+
+RewriteEngine On
+RewriteCond %{REMOTE_ADDR} !^2.96.201.98
+RewriteCond %{REQUEST_URI} !^/maintenance/(.)*$ [NC]
+RewriteRule ^(.*)$ /maintenance/index.php [R=302,L]
