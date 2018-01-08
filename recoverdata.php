@@ -1,9 +1,9 @@
 <?php
 //serverDB details 
-$servername = "localhost";
-$username = "towdie10_pf";
-$password = "Sp4nk1ngs";
-$dbname = "towdie10_pf_data";
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
 
 //Form variables
 // $pfresult = $_POST['pfresult'];
