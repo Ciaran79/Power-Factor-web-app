@@ -17,12 +17,12 @@ function login(){
         document.getElementById('password').value = "";
     }
 
-    if ((user == "Towdie") && (password == "Sp4nk")){
+    if ((user == "") && (password == "")){
         loginBox.value = "towdie";
         
        
     }
-    else if ((user !== "Towdie")||(password !== "Sp4nk")){
+    else if ((user !== "")||(password !== "")){
         loginBox.value = "not recoginsed";
         
     }
