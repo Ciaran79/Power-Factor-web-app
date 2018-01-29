@@ -58,6 +58,7 @@ function ajaxlogin(event) {
         return;
     }
 
+<<<<<<< HEAD
     xhr.open('POST', 'setsession.php', true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
@@ -101,7 +102,8 @@ function ajaxSaveResultsToDatabase(event) {
     if (!date) {
         alert('You need to choose a date');
         return;
-    }
+
+
 
     var xhr = new XMLHttpRequest();
 
@@ -218,6 +220,7 @@ function ajaxRegisterUser(event) {
         xhr.onload = function () {
             if (this.status === 200) {
 
+<<<<<<< HEAD
                 showEventMessage(xhr.responseText);
             }
         };
@@ -275,3 +278,5 @@ function startStopCountdown(arg) {
         
     }
 }
+
+
