@@ -2,7 +2,6 @@
 //serverDB details 
 
 $servername = "";
-
 $username = "";
 $password = "";
 $dbname = "";
