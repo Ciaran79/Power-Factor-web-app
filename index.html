@@ -22,158 +22,282 @@
 
     </header>
 
-    <!-- Admin controls -->
-
 
     <main class="container-fluid">
 
-        <div id="admincontrols" class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                <button>
-                    <a href='viewsessiondata.php?show=true'>Show Logged in</a>
+
+        <!-- <div id="admincontrols" class="row">
+            <div class="col">
+                <button id="view-session" onclick="showSession('login-message-area')">
+                    Show session user
                 </button>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                <button type="button">
-                    <a href='unsetsession.php?hello=true'>Log out</a>
-                </button>
-            </div>
-            
-        </div>
 
-
-
-        <!-- Login Section Form-->
-        <form method="post" action="setsession.php" <div class="row mb-2">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                <label for="user">User</label>
-                <input type="text" id="user" placeholder="user" name="user">
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="password" name="password">
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                <label for="login"></label><br>
-                <input id="login" type="submit" value="login">
-            </div>
-            
-        </form>
-       
-
-
-
-        <!-- Workout Section -->
-        <div class="text-center">
-            <h3>Record new workout results</h3>
-        </div>
-
-        <form method="post" action="insertdata.php" class="submit-section">
-            <div class="row p-3">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label for="dateSelector">Workout date: </label>
-                    <input type="date" id="dateSelector" class="text-center" name="date">
+                <div class="col">
+                    <input type="text " class="login-message-area" id="login-message-area" placeholder="" name="login-message-area">
                 </div>
-                <!-- logged in as display -->
-                <div class="row mb-2">
+        </div> -->
 
-                    <label for="login-name-area">Logged in as: </label>
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <input type="text " class="login-name-area" id="login-name-area" placeholder="username area" name="login-name-area" readonly>
+        <h6>Just want see how it works? Login with the test user account.
+            <br> User email: user@test.com
+            <br> password: password
+            <br>
+        </h6>
+        <div class="text-center">
+            <!-- logged in display -->
+            <label for="login-name-area">
+                <b>Logged in as:</b>
+            </label>
+            <input type="text" class="login-name-area" id="login-name-area" placeholder="username area" name="login-name-area" readonly>
+        </div>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="previous-workouts-tab" data-toggle="tab" href="#previous-workouts" role="tab" aria-controls="previous-workouts" aria-selected="true">Previous Workouts</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="what-is-pf-tab" data-toggle="tab" href="#what-is-pf" role="tab" aria-controls="what-is-pf" aria-selected="false">What is Power Factor training?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="register-pf-tab" data-toggle="tab" href="#register-pf" role="tab" aria-controls="register-pf" aria-selected="false">Login/Register</a>
+            </li>
+           
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="p-2"></div>
+
+
+                <div id="event-message" class="text-center"></div>
+
+                <div class="p-2"></div>
+                <h3 class="text-center">Timer</h3>
+                <div id="timer-area">
+                    <div id="countdown-area" class="text-center">
+                        <label for="countdown-duration">Countdown duration (seconds):</label>
+                        <br>
+                        <input type="number" id="countdown-duration" value="130">
                     </div>
+
+
+                    <div class="p-2"></div>
+
+                    <!-- Display the countdown timer in an element -->
+                    <h1 id="timer-display" class="text-center">0</h1>
+                    <div class="p-2"></div>
+
+                    <button id="timer-button" class="btn btn-primary btn-block" onclick="startStopCountdown('start')">Start timer</button>
                 </div>
-                <!-- <select name="username" id="username">
-                    <option value="towdie">towdie</option>
-                    <option value="theother">theother</option>
-                </select> -->
+
+
+                <div class="p-2"></div>
+
+                <!-- Workout Section -->
+                <div>
+                    <h3 class="text-center">Record new workout results</h3>
+                </div>
+
+                <form id="results-form">
+                    <div class="row">
+                        <div class="col-sm text-center">
+                            <label for="workout-type">Choose Workout:</label>
+                            <br>
+                            <select id="workout-type" class="btn-block" name="workout">
+                                <option value="shoulders">Shoulders</option>
+                                <option value="traps">Traps</option>
+                                <option value="triceps">Triceps</option>
+                                <option value="biceps">Biceps</option>
+                                <option value="abs">Abs</option>
+                                <option value="lowerback">Lower Back</option>
+                                <option value="widegripchest">Wide Grip Chest</option>
+                                <option value="upperback">Upper Back</option>
+                                <option value="thighs">Thighs</option>
+                                <option value="calves">Calves</option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm text-center">
+                            <label for="date-selector">Workout date: </label>
+                            <br>
+                            <input type="date" id="date-selector" class="text-center btn-block" name="date">
+                        </div>
+                    </div>
+
+                    <div class="p-2"></div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <input id="weight-input" class="btn-block input-boxes" type="number" placeholder="Weight" name="weight">
+                        </div>
+                        <div class="col-sm">
+                            <input id="reps-input" class="btn-block input-boxes" type="number" placeholder="Reps" name="reps">
+                        </div>
+                        <div class="col-sm">
+                            <input id="time-input" class="btn-block input-boxes" type="number" placeholder="Time" name="time">
+                        </div>
+                        <div class="col-sm">
+                            <input id="pfresult" class="btn-block input-boxes" type="number" placeholder="results" name="pfresult" readonly>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <button id="reset" class="btn btn-block btn-dark buttons" type="reset">Clear</button>
+                        </div>
+
+                       
+
+                        <div class="col">
+                            <button type="button" id="calculate-power-factor" class="btn btn-block btn-primary buttons">Calculate Power Factor</button>
+                        </div>
+
+                        <div class="col">
+                            <input id="saveData" class="btn btn-block btn-success buttons" type="submit" value="Save results">
+                        </div>
+
+
+
+                    </div>
+                </form>
+
+
+
+                <div class="p-3"></div>
+
+               
+
             </div>
-            <div class="row p-3">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <select name="workout">
-                        <option value="shoulders">Shoulders</option>
-                        <option value="traps">Traps</option>
-                        <option value="triceps">Triceps</option>
-                        <option value="biceps">Biceps</option>
-                        <option value="abs">Abs</option>
-                        <option value="lowerback">Lower Back</option>
-                        <option value="widegripchest">Wide Grip Chest</option>
-                        <option value="upperback">Upper Back</option>
-                        <option value="thighs">Thighs</option>
-                        <option value="calves">Calves</option>
-                    </select>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <input id="weight-input" type="text" placeholder="Weight" name="weight">
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <input id="reps-input" type="text" placeholder="Reps" name="reps">
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <input id="time-input" type="text" placeholder="Time" name="time">
-                </div>
+
+            <div class="tab-pane fade" id="previous-workouts" role="tabpanel" aria-labelledby="previous-workouts-tab">
+                <div class="p-3"></div>
+                <h3 class="text-center">Previous Workouts</h3>
+                <div class="p-3"></div>
+              <!-- Previous results Section -->
+
+              <h3 class="text-center">See previous workout results</h3>
+
+              <form id="old-data">
+                  <div class="row">
+                      <div class="col-sm">
+                          <label for="login-name-area-two">Logged in as: </label>
+                          <br>
+                          <input type="text " id="login-name-area-two" class="btn-block" placeholder="username" name="login-name-area-two" readonly>
+                      </div>
+
+
+                      <div class="col-sm">
+                          <label for="workout-old">Choose workout</label>
+                          <br>
+                          <select id="workout-old" class="btn-block" name="workout-old">
+                              <option value="shoulders">Shoulders</option>
+                              <option value="traps">Traps</option>
+                              <option value="triceps">Triceps</option>
+                              <option value="biceps">Biceps</option>
+                              <option value="abs">Abs</option>
+                              <option value="lowerback">Lower Back</option>
+                              <option value="widegripchest">Wide Grip Chest</option>
+                              <option value="upperback">Upper Back</option>
+                              <option value="thighs">Thighs</option>
+                              <option value="calves">Calves</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row">
+
+                      <div class="col-sm">
+                          <button id="clear-list" class="btn btn-block btn-dark buttons" type="button" onclick="clearList()">Clear List</button>
+                      </div>
+                      <div class="col-sm">
+                          <input type="submit" id="show-data" class="btn btn-block btn-primary buttons" value="See Previous Results">
+                      </div>
+
+                  </div>
+                  <div name="previous-results" id="previous-results"></div>
+              </form>
             </div>
-            <div class="row p-3">
 
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <input id="pfresult" type="text" placeholder="results" name="pfresult">
-                </div>
-
-
-
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <input id="saveData" type="submit" value="Save results to database">
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <button id="reset" type="reset">Reset all values</button>
-                </div>
+            <div class="tab-pane fade" id="what-is-pf" role="tabpanel" aria-labelledby="what-is-pf-tab">
+                <div class="p-3"></div>
+                <h3 class="text-center">What is Powerfactor training?</h3>
+                <div class="p-3"></div>
+                <p id="aboutpf">
+                </p>
             </div>
 
-        </form>
+            <div class="tab-pane fade" id="register-pf" role="tabpanel" aria-labelledby="register-pf">
+                <div class="p-3"></div>
 
-        <div class="text-center">
-            <button id="calculate-power-factor" class="buttons" onclick="changeText('pfresult')">Calculate Power Factor</button>
+                <div class="col-sm">
+
+                    <!-- Login Section Form-->
+                    <h3 class="text-center">Login</h3>
+                    <form id="login-form">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="user">User Email:</label>
+                                <input type="email" id="user" class="btn-block" placeholder="user" name="user" required>
+                            </div>
+                            <div class="col-sm">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" class="btn-block" placeholder="password" name="password" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <button type="button" id="logout-button" class="btn btn-block btn-dark buttons">Log Out</button>
+                            </div>
+                            <div class="col-sm">
+                                <button type="submit" id="login-button" class="btn btn-block btn-success buttons">Log in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="p-3"></div>
+
+                <h3 class="text-center">Register</h3>
+                <!-- Register Form -->
+                <div class="col-sm ">
+                    <form id="register-form">
+                        <div class="row">
+                            <div class="col-sm ">
+                                <label for="userreg">User Email:</label>
+                                <input type="email" id="userreg" class="btn-block" placeholder="user" name="userreg" required>
+                            </div>
+                            <div class="col-sm">
+                                <label for="passwordreg">Password:</label>
+                                <input type="password" id="passwordreg" class="btn-block" placeholder="password" name="passwordreg" required>
+                                <label for="passwordreg2">Retype Password:</label>
+                                <input type="password" id="passwordreg2" class="btn-block" placeholder="retype password" name="passwordreg2" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm  ">
+                                <button type="submit" id="register-button" class="btn btn-block btn-success buttons">Register</button>
+                                <div id="reg-message" class="col-sm "></div>
+                            </div>
+
+
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+           
+
         </div>
-
-        <div class="p-3">
-
-        </div>
-
-        <h3>See previous workout results</h3>
-
-        <form method="post" action="recoverdata.php" class="recover-section">
-            <div class="row p-3">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label for="login-name-area-two">Logged in as: </label>
-                    <input type="text " id="login-name-area-two" placeholder="username" name="login-name-area-two" readonly>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <!-- <select name="username" id="username">
-                        <option value="towdie">towdie</option>
-                        <option value="theother">theother</option>
-                    </select> -->
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <select name="workout">
-                        <option value="shoulders">Shoulders</option>
-                        <option value="traps">Traps</option>
-                        <option value="triceps">Triceps</option>
-                        <option value="biceps">Biceps</option>
-                        <option value="abs">Abs</option>
-                        <option value="lowerback">Lower Back</option>
-                        <option value="widegripchest">Wide Grip Chest</option>
-                        <option value="upperback">Upper Back</option>
-                        <option value="thighs">Thighs</option>
-                        <option value="calves">Calves</option>
-                    </select>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <input type="submit" id="show-data" value="See older results">
-                </div>
-
-            </div>
-        </form>
-
 
     </main>
 
@@ -186,11 +310,28 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
 
+
         <script>
-            document.getElementById('login-name-area').value = getCookie('userid');
-            document.getElementById('login-name-area-two').value = getCookie('userid');
-            // document.getElementById('dateSelector').value = new Date().toDateInputValue();
+            Date.prototype.toDateInputValue = (function () {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0, 10);
+            });
+            document.getElementById('date-selector').value = new Date().toDateInputValue();
         </script>
+
+        <script>
+            showSession('login-name-area', 'login-name-area-two');
+            getText('aboutpf.html', 'aboutpf');
+
+            document.getElementById('login-form').addEventListener('submit', ajaxlogin);
+            document.getElementById('logout-button').addEventListener('click', ajaxLogOut);
+            document.getElementById('register-form').addEventListener('submit', ajaxRegisterUser);
+            document.getElementById('calculate-power-factor').addEventListener('click', calculatePf);
+            document.getElementById('results-form').addEventListener('submit', ajaxSaveResultsToDatabase);
+            document.getElementById('old-data').addEventListener('submit', ajaxGetPreviousResults);
+        </script>
+
     </footer>
 </body>
 

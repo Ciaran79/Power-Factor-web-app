@@ -1,13 +1,11 @@
 <?php 
 session_start();
-function runMyFunction() {
-   print_r($_SESSION);
 
-  }
-
-if (isset($_GET['show'])) {
-  runMyFunction();
+if(isset($_SESSION['userid'])){
+    echo ($_SESSION['userid']);
 }
-header("Refresh:5; url=index.html");   
+else {
+    echo 'Nobody is logged in..';
+}
 
 ?>

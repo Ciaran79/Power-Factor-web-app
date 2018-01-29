@@ -1,35 +1,38 @@
 <?php
 //serverDB details 
 $servername = "localhost";
-$username = "towdie10_pf";
-$password = "Sp4nk1ngs";
-$dbname = "towdie10_pf_data";
+$username = "";
+$password = "";
+$dbname = "";
 
 //Form variables
-// $pfresult = $_POST['pfresult'];
-// $wkdate = $_POST['date'];
-$workouttype = $_POST['workout'];
-// $weight = $_POST['weight'];
-// $reps = $_POST['reps'];
-// $time = $_POST['time'];
+// $pfresult = $_GET['pfresult'];
+// $wkdate = $_GET['date'];
+$workouttype = $_GET['workout-old'];
+// $weight = $_GET['weight'];
+// $reps = $_GET['reps'];
+// $time = $_GET['time'];
 
-$wktypeweight = "" . $_POST['workout'] . "weight";
-// $wkweight = $_POST['weight'];
+$wktypeweight = "" . $_GET['workout-old'] . "weight";
+// $wkweight = $_GET['weight'];
 
-$wktypereps = "" . $_POST['workout'] . "reps";
-// $wkreps = $_POST['reps'];
+$wktypereps = "" . $_GET['workout-old'] . "reps";
+// $wkreps = $_GET['reps'];
 
-$wktypetime = "" . $_POST['workout'] . "time";
-// $wktime = $_POST['time'];
+$wktypetime = "" . $_GET['workout-old'] . "time";
+// $wktime = $_GET['time'];
 
-$wktypepf = "" . $_POST['workout'] . "pf";
-// $wkpf = $_POST['pfresult'];
+$wktypepf = "" . $_GET['workout-old'] . "pf";
+// $wkpf = $_GET['pfresult'];
 
-$pfuser = $_POST['login-name-area-two']; 
+$pfuserid = $_GET['login-name-area-two']; 
 
-$pfuserlower = strtolower($pfuser);
+        $pfuserlower = strtolower($pfuserid);
+        $tablename = str_replace("@", "_", $pfuserlower);    
+        $tablename = str_replace(".", "_", $tablename); 
+        $tablename = $tablename . "_data";
 
-$tablename = $pfuserlower . "_data";
+// $tablename = $pfuserlower . "_data";
 
 
 
@@ -53,7 +56,7 @@ if ($result->num_rows > 0) {
         . $workouttype . " weight was: ". $row[$wktypeweight] . "kg <br>"
         . $workouttype . " reps was: " . $row[$wktypereps] . " reps <br>" 
         . $workouttype . " time was: ". $row[$wktypetime] . " minutes<br>";
-        echo "<a href='index.html'>Go back</a>";
+        // echo "<a href='index.html'>Go back</a>";
        
     }
 } else {
